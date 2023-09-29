@@ -1,0 +1,142 @@
+{% load static i18n %}
+<!doctype html>{% get_current_language as CURRENT_LANGUAGE %}
+<html lang="{{ CURRENT_LANGUAGE }}">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link
+            rel="icon"
+            type="image/png"
+            href="favicon.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            href="touch-icon-iphone.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/static/img/apple-touch-icon/touch-icon-ipad.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/static/img/apple-touch-icon/touch-icon-iphone-retina.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            sizes="167x167"
+            href="/static/img/apple-touch-icon/touch-icon-ipad-retina.png"
+        >
+        <meta
+            name="theme-color"
+            content="#3c790a"
+        >
+        <meta
+            name="theme-color"
+            content="#ecd96f"
+            media="(prefers-color-scheme: light)"
+        >
+        <meta
+            name="theme-color"
+            content="#0b3e05"
+            media="(prefers-color-scheme: dark)"
+        >
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        >
+        <meta
+            name="author"
+            content="Tu nombre"
+        >
+        <meta
+            name="generator"
+            content="Django"
+        >
+        <meta
+            name="keywords"
+            content="html, css, javascript"
+        >
+        <meta
+            name="description"
+            content="{% block description %}{% endblock %}"
+        >
+        <meta
+            property="og:image"
+            content="{% block og-image %}{% endblock %}"
+        >
+        <meta
+            property="og:title"
+            content="{% block og-title %}{% endblock %}"
+        >
+        <meta
+            property="og:type"
+            content="website"
+        >
+        <meta
+            property="og:url"
+            content=""
+        >
+        <meta
+            name="twitter:card"
+            content="summary"
+        >
+        <meta
+            name="twitter:site"
+            content="@cuenta"
+        >
+        <meta
+            name="twitter:creator"
+            content="@cuenta"
+        >
+        <meta
+            property="og:image:secure_url"
+            content="https://..."
+        >
+        <meta
+            property="og:image:type"
+            content="image/jpeg"
+        >
+        <meta
+            property="og:image:width"
+            content="400"
+        >
+        <meta
+            property="og:image:height"
+            content="300"
+        >
+        <meta
+            property="og:image:alt"
+            content=""
+        >
+        <link
+	    href="{% static 'css/mobile.css' %}"
+	    rel="stylesheet"
+	    media="all and (max-width: 600px)"
+	>
+        <link
+	    href="{% static 'css/desktop.css' %}"
+	    rel="stylesheet"
+	    media="all and (min-width: 600px)"
+	>
+	<script type="module" src="{% static 'js/main.js' %}" defer></script>
+    </head>
+    <body
+		data-host="{{ request.get_host }}"
+		data-debug="{{ DEBUG }}"
+	>
+            <section id="loading"></section>
+	    <section id="notifications" class="notifications"></section>
+	    <section id="no_connection"></section>
+	    <div class="container">
+		<header id="content-header">
+		    {% include 'components/header.html' %}
+		</header>
+		<main id="main" class="main-container">{% include page %}</main>
+		<footer id="content-footer">
+		    {% include 'components/footer.html' %}
+		</footer>
+	    </div>
+    </body>
+</html>
