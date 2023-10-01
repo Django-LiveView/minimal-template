@@ -3,7 +3,7 @@ django===4.2
 django-extensions===3.2.0
 dj-database-url==0.5.0
 
-django-liveview==1.0.3
+django-liveview==1.0.5
 
 # Databases
 psycopg2-binary===2.9.3
