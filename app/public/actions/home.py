@@ -26,10 +26,10 @@ async def get_context(consumer=None):
     context.update(
         {
             "url": settings.DOMAIN_URL + reverse("home"),
-            "title": _("Home") + " | LiveSnake",
+            "title": _("Home") + " | Home",
             "meta": {
                 "description": _("Home page of the website"),
-                "image": f"{settings.DOMAIN_URL}{static('img/seo/cat.jpg')}",
+                "image": f"{settings.DOMAIN_URL}{static('img/seo/og-image.jpg')}",
             },
             "active_nav": "home",
             "page": template,
