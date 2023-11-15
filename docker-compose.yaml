@@ -43,7 +43,7 @@ services:
         - ${CADDY_PORT_HTTP}:80
         - ${CADDY_PORT_HTTPS}:443
     volumes:
-        - ./Caddyfile.dev:/etc/caddy/Caddyfile
+        - ./Caddyfile.conf:/etc/caddy/Caddyfile
         - ./caddy_data:/data
         - .:/usr/src/app/
     depends_on:
