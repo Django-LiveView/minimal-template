@@ -1,8 +1,12 @@
 {% load static %}
 
-<main data-controller="home">
+<main>
     <p>
-	<button data-action="click->home#randomNumber">Random number</button>
+	<button
+	      data-action="click->page#run"
+	      data-liveview-action="home"
+	      data-liveview-function="random_number"
+	>Random number</button>
     </p>
     <h2 id="output-random-number"></h2>
 </main>
