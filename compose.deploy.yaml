@@ -1,0 +1,48 @@
+
+services:
+
+  postgresql:
+    image: postgres
+    container_name: ${PROJECT_NAME}-postgresql
+    restart: "always"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    expose:
+      - 5432
+
+  django:
+    build:
+      context: ./
+      dockerfile: ./Dockerfiles/django/Dockerfile
+    container_name: ${PROJECT_NAME}-django
+    restart: "always"
+    entrypoint: /django-launcher.sh
+    volumes:
+      - .:/usr/src/app/
+    env_file:
+      - .env
+    expose:
+      - 8000
+    depends_on:
+      - postgresql
+    links:
+      - redis
+
+  redis:
+    image: redis:alpine
+    container_name: ${PROJECT_NAME}-redis
+    restart: "always"
+    expose:
+      - ${REDIS_PORT}
+
+  nginx:
+    restart: always
+    image: nginx:alpine
+    ports:
+      - 8500:80
+    volumes:
+      - ./static:/var/www/static
+      - ./media:/var/www/media
+      - ./nginx.conf:/etc/nginx/nginx.conf
