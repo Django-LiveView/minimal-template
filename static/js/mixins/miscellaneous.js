@@ -3,14 +3,6 @@ export function getLang() {
   return document.querySelector('html').getAttribute("lang");
 }
 
-// Prevent body scroll
-export function addBodyScrollLock() {
-  document.body.classList.add("scroll-lock");
-}
-export function removeBodyScrollLock() {
-    document.body.classList.remove("scroll-lock");
-}
-
 export async function encodeFileAsBase64URL(file) {
     if (file) {
 	return new Promise((resolve) => {
@@ -34,14 +26,13 @@ export function parallax(el, x, y) {
 
 // Go to the top page
 function scrollToTop () {
-    window.scrollTo( {
-        top: 0,
-        behavior: "smooth",
+    window.scrollTo({
+        top: 0
     });
 }
 
 // Renders the HTML received from the Consumer or from indexedDB
-export const renderHTML = (data, isBackward = false, isCachingData = false) => {
+export const renderHTML = (data) => {
 
   const targetHTML = document.querySelector(data.selector);
   if (targetHTML) {
@@ -52,7 +43,7 @@ export const renderHTML = (data, isBackward = false, isCachingData = false) => {
     }
 
     // If it is a new page or is backward, the scroll returns to the beginning
-    if ( data.html && !data.scroll && data.url || isBackward ) {
+    if ( data.html && !data.scroll && data.url) {
       setTimeout(() => { scrollToTop() }, 50);
     }
 
@@ -61,14 +52,10 @@ export const renderHTML = (data, isBackward = false, isCachingData = false) => {
     return;
   }
     // Update URL
-    if (data.url) {
-	window.history.pushState({ url: data.url }, "", data.url);
-    }
+    if (data.url) history.pushState({}, "", data.url);
 
     // Update title
-    if (data.title) {
-	document.title = data.title;
-    }
+    if (data.title) document.title = data.title;
 }
 
 export function moveScrollToAnchor(data) {
